@@ -10,6 +10,6 @@ public class AppController {
 
     @GET
     public String sayHello() {
-        return "hello.jsp";
+        return "hello.mustache";
     }
 }

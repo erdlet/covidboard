@@ -36,6 +36,12 @@
 			<artifactId>krazo-resteasy</artifactId>
 			<version>${krazo.version}</version>
 		</dependency>
+	
+		<dependency>
+			<groupId>org.eclipse.krazo.ext</groupId>
+			<artifactId>krazo-mustache</artifactId>
+			<version>${krazo.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

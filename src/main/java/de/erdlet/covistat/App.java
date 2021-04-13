@@ -4,8 +4,9 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- * Default JAX-RS application listening on /mvc
+ * JAX-RS application for bootstrapping the Krazo controllers. Can run on the context root, because the mustache
+ * extension won't forward to the servlet engine.
  */
-@ApplicationPath("/mvc")
+@ApplicationPath("/")
 public class App extends Application {
 }
