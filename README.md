@@ -16,3 +16,9 @@ Quellenvermerk: Robert Koch-Institut (RKI), dl-de/by-2-0  Haftungsausschluss: â€
 - Eclipse Krazo Mustache Extension
 - WildFly
 - MariaDB
+
+## Abfrage-URI / Beispiel AGS
+
+URI: https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=BL,BL_ID,county,last_update,cases7_per_100k,AGS&returnGeometry=false&outSR=4326&f=json
+
+AGS: 09185 (ND), 09186 (PAF)
