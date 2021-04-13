@@ -11,10 +11,10 @@ Quellenvermerk: Robert Koch-Institut (RKI), dl-de/by-2-0  Haftungsausschluss: â€
 
 ## Technologie
 
-- Jakarta EE 9
+- Jakarta EE 8 
 - Jakarta MVC / Eclipse Krazo
 - Eclipse Krazo Mustache Extension
-- WildFly
+- WildFly 22 
 - MariaDB
 
 ## Abfrage-URI / Beispiel AGS

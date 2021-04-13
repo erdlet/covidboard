@@ -1,67 +1,68 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.erdlet</groupId>
-    <artifactId>covistat</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+	<groupId>de.erdlet</groupId>
+	<artifactId>covistat</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
 
-    <name>covistat</name>
+	<name>covistat</name>
 
-    <properties>
-        <jakartaee-api.version>9.0.0</jakartaee-api.version>
-        <krazo.version>2.0.0</krazo.version>
-        <jakarta.mvc-api.version>2.0.0</jakarta.mvc-api.version>
-        <junit.version>4.12</junit.version>
-    </properties>
+	<properties>
+		<jakartaee-api.version>8.0.0</jakartaee-api.version>
+		<krazo.version>1.1.0</krazo.version>
+		<jakarta.mvc-api.version>1.0.0</jakarta.mvc-api.version>
+		<junit.version>4.12</junit.version>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-web-api</artifactId>
-            <version>${jakartaee-api.version}</version>
-            <scope>provided</scope>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<version>${jakartaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>jakarta.mvc</groupId>
-            <artifactId>jakarta.mvc-api</artifactId>
-            <version>${jakarta.mvc-api.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>javax.mvc</groupId>
+			<artifactId>javax.mvc-api</artifactId>
+			<version>${jakarta.mvc-api.version}</version>
+		</dependency>
 
-                <dependency>
-            <groupId>org.eclipse.krazo</groupId>
-            <artifactId>krazo-resteasy</artifactId>
-            <version>${krazo.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.eclipse.krazo</groupId>
+			<artifactId>krazo-resteasy</artifactId>
+			<version>${krazo.version}</version>
+		</dependency>
 
-    <build>
-        <finalName>covistat</finalName>
-        <plugins>
-                        <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-                    </plugins>
-    </build>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>covistat</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

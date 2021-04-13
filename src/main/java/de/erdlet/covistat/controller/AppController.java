@@ -1,10 +1,10 @@
 package de.erdlet.covistat.controller;
 
-import jakarta.mvc.Controller;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
+import javax.mvc.Controller;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-@Path("app")
+@Path("")
 @Controller
 public class AppController {
 
