@@ -17,11 +17,30 @@
 		<junit.version>4.12</junit.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.eclipse.microprofile</groupId>
+				<artifactId>microprofile</artifactId>
+				<version>3.3</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
 			<version>${jakartaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.microprofile.config</groupId>
+			<artifactId>microprofile-config-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
@@ -36,7 +55,7 @@
 			<artifactId>krazo-resteasy</artifactId>
 			<version>${krazo.version}</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.eclipse.krazo.ext</groupId>
 			<artifactId>krazo-mustache</artifactId>

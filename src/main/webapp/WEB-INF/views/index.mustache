@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello!</title>
+</head>
+<body>
+<h1>Hello on CoviStat</h1>
+{{#page.entries}}
+	<h2>{{county}} ({{ags}})</h2>
+	<p>7-Tage Inzidenz: {{sevenDayIncidence}}</p>
+	<small>Letztes Update: {{lastUpdate}}</small>
+{{/page.entries}}
+</body>
+</html>
