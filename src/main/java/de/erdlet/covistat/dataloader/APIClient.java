@@ -23,9 +23,9 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
  *
  */
 @ApplicationScoped
-public class ArcGisClient {
+public class APIClient {
 
-    private static final Logger LOGGER = Logger.getLogger(ArcGisClient.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(APIClient.class.getName());
 
     @Inject
     @ConfigProperty(name = "api.uri")
@@ -35,7 +35,7 @@ public class ArcGisClient {
     @ConfigProperty(name = "filter.ags")
     String ags;
 
-    public List<ArcGisFeature> fetchStatistics() {
+    public List<APIResponseFeature> fetchStatistics() {
         final String finalUri = uriWithPlaceholder.replace(":ags", ags);
 
         try {
@@ -44,7 +44,7 @@ public class ArcGisClient {
 
             final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            final ArcGisResponse parsedBody = JsonbBuilder.create().fromJson(response.body(), ArcGisResponse.class);
+            final APIResponse parsedBody = JsonbBuilder.create().fromJson(response.body(), APIResponse.class);
 
             return parsedBody.features;
 

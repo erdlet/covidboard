@@ -6,7 +6,7 @@ import javax.mvc.Models;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import de.erdlet.covistat.dataloader.ArcGisClient;
+import de.erdlet.covistat.dataloader.APIClient;
 
 @Path("")
 @Controller
@@ -16,7 +16,7 @@ public class DashboardController {
     Models models;
 
     @Inject
-    ArcGisClient arcGisClient;
+    APIClient arcGisClient;
 
     @GET
     public String index() {

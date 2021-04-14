@@ -3,15 +3,15 @@ package de.erdlet.covistat.dataloader;
 import javax.json.bind.annotation.JsonbProperty;
 
 /**
- * The feature object of the {@link ArcGisResponse}.
+ * The feature object of the {@link APIResponse}.
  *
  * @author erdlet
  *
  */
-public class ArcGisFeature {
+public class APIResponseFeature {
 
     @JsonbProperty("attributes")
-    public ArcGisFeatureAttributes attributes;
+    public APIResponseFeatureAttributes attributes;
 
     @Override
     public String toString() {
