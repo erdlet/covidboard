@@ -1,14 +1,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello!</title>
+    <title>CoviStat - Dashboard</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css" />
 </head>
 <body>
-<h1>Hello on CoviStat</h1>
+{{> _header }}
+
+<main class="container my-3">
+<h1>Aktuelle Inzidenzen</h1>
+
 {{#page.entries}}
-	<h2>{{county}} ({{ags}})</h2>
-	<p>7-Tage Inzidenz: {{sevenDayIncidence}}</p>
-	<small>Letztes Update: {{lastUpdate}}</small>
+	<div class="card my-3">
+		<div class="card-header">
+			<h2 class="card-title">{{county}}</h2>
+			<h3 class="card-subtitle mb-2 text-muted">{{ags}}</h3>
+		</div>
+		<div class="card-body">
+		7-Tage Inzidenz: {{sevenDayIncidence}}
+		</div>
+		<div class="card-footer">
+		Letztes Update: {{lastUpdate}}
+		</div>
+	</div>
 {{/page.entries}}
+</main>
 </body>
 </html>
