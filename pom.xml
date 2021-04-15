@@ -15,6 +15,7 @@
 		<krazo.version>1.1.0</krazo.version>
 		<jakarta.mvc-api.version>1.0.0</jakarta.mvc-api.version>
 		<junit.version>4.12</junit.version>
+		<flyway.version>7.7.3</flyway.version>
 	</properties>
 
 	<dependencyManagement>
@@ -60,6 +61,12 @@
 			<groupId>org.eclipse.krazo.ext</groupId>
 			<artifactId>krazo-mustache</artifactId>
 			<version>${krazo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
 		</dependency>
 
 		<dependency>
