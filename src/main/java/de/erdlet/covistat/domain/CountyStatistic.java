@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "county_statistics")
 public class CountyStatistic implements DomainObject<CountyStatistic> {
 
-    @Embedded
+    @EmbeddedId
     private CountyId id;
 
     private String ags;
@@ -32,7 +32,7 @@ public class CountyStatistic implements DomainObject<CountyStatistic> {
     public CountyStatistic() {
     }
 
-    public  CountyStatistic(final String ags, final String county, final Double sevenDayIncidence, final String reportTimestamp) {
+    public CountyStatistic(final String ags, final String county, final Double sevenDayIncidence, final String reportTimestamp) {
         this.id = new CountyId(ags);
         this.ags = ags;
         this.county = county;

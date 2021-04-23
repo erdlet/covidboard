@@ -1,9 +1,9 @@
 package de.erdlet.covistat.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
 
 /**
  * The unique county ID. It is derived from the AGS (Allgemeiner Gemeinde Schluessel) and is in fact the AGS without
@@ -13,9 +13,8 @@ import javax.persistence.EmbeddedId;
  *
  */
 @Embeddable
-public class CountyId implements DomainObject<CountyId> {
+public class CountyId implements DomainObject<CountyId>, Serializable {
 
-    @EmbeddedId
     private Long id;
 
     public CountyId() {
