@@ -27,5 +27,4 @@ public class Router {
     public String linkToPrivacy() {
         return mvcContext.uri("privacy").toASCIIString();
     }
-
 }
