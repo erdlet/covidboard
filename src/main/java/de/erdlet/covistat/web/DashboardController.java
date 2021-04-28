@@ -7,7 +7,7 @@ import javax.mvc.UriRef;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import de.erdlet.covistat.dataloader.APIClient;
+import de.erdlet.covistat.statistics.CachingStatisticsProvider;
 
 @Path("")
 @Controller
@@ -20,12 +20,12 @@ public class DashboardController {
     Router router;
 
     @Inject
-    APIClient arcGisClient;
+    CachingStatisticsProvider statisticsProvider;
 
     @GET
     @UriRef("dashboard")
     public String index() {
-        models.put("page", new DashboardPage(arcGisClient.fetchStatistics()));
+        models.put("page", new DashboardPage(statisticsProvider.getRawStatisticData()));
         models.put("router", router);
         return "index.mustache";
     }
