@@ -35,7 +35,7 @@ public class CachingStatisticsProvider {
         return List.copyOf(FEATURE_CACHE);
     }
 
-    @Schedule(hour = "1")
+    @Schedule(minute = "0", hour = "2")
     public void refreshCache() {
         LOGGER.info("Starting to refresh feature data cache...");
 
