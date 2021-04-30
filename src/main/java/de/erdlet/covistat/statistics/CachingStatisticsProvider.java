@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Schedule;
+import javax.ejb.Schedules;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -35,7 +36,11 @@ public class CachingStatisticsProvider {
         return List.copyOf(FEATURE_CACHE);
     }
 
-    @Schedule(minute = "0", hour = "2")
+    @Schedules({
+        @Schedule(minute = "0", hour = "2"),
+        @Schedule(minute = "0", hour = "5"),
+        @Schedule(minute = "0", hour = "7")
+    })
     public void refreshCache() {
         LOGGER.info("Starting to refresh feature data cache...");
 
