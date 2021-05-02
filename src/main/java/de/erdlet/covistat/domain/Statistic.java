@@ -76,7 +76,7 @@ public class Statistic {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, rkiTimestamp, sevenDayIncidence);
+        return Objects.hash(county, id, rkiTimestamp, sevenDayIncidence);
     }
 
     @Override
@@ -91,11 +91,12 @@ public class Statistic {
             return false;
         }
         final Statistic other = (Statistic) obj;
-        return Objects.equals(id, other.id) && Objects.equals(rkiTimestamp, other.rkiTimestamp) && Objects.equals(sevenDayIncidence, other.sevenDayIncidence);
+        return Objects.equals(county, other.county) && Objects.equals(id, other.id) && Objects.equals(rkiTimestamp, other.rkiTimestamp)
+                && Objects.equals(sevenDayIncidence, other.sevenDayIncidence);
     }
 
     @Override
     public String toString() {
-        return "Statistic [id=" + id + ", sevenDayIncidence=" + sevenDayIncidence + ", rkiTimestamp=" + rkiTimestamp + "]";
+        return "Statistic [id=" + id + ", sevenDayIncidence=" + sevenDayIncidence + ", rkiTimestamp=" + rkiTimestamp + ", county=" + county + "]";
     }
 }
