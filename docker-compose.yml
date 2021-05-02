@@ -1,15 +1,30 @@
 # Use root/example as user/password credentials
 version: '3.1'
 
+secrets:
+  db_root_password:
+    external: true
+  db_user:
+    external: true
+  db_password:
+    external: true
+
 services:
+  app:
+    image: covistat:latest
+    restart: on-failure
+    environment:
+      DB_URI: jdbc:mariadb://db/covistat
+      DB_USER: /run/secrets/db_user
+      DB_PASSWORD: /run/secrets/db_password
 
   db:
     image: mariadb
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_USER: covistat
-      MYSQL_PASSWORD: covistatPw
+      MYSQL_USER: /run/secrets/db_user
+      MYSQL_PASSWORD: /run/secrets/db_password
       MYSQL_DATABASE: covistat
     ports:
       - 3306:3306
