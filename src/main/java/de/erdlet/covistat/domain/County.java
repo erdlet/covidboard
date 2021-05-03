@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  * A {@link County} is a "kreisfreie Stad" or a "Landkreis" for which COVID-19 information is gathered by the RKI.
  *
@@ -12,12 +20,18 @@ import java.util.Objects;
  * @author erdlet
  *
  */
+@Entity
+@Table(name = "county")
 public class County {
 
+    @Id
     private String ags;
 
+    @Column(name = "name")
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "county_id")
     private List<Statistic> statistics;
 
     public County() {
