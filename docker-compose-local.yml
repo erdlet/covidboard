@@ -3,9 +3,11 @@ version: '3.1'
 
 services:
   app:
-    image: covistat:latest
+    image: erdlet/covistat:latest 
     restart: on-failure
     environment:
+      DB_POOL_NAME: covistat-pool
+      DB_JNDI_NAME: java:/jdbc/covistat
       DB_URI: jdbc:mariadb://db/covistat
       DB_USER: covistat 
       DB_PASSWORD: covistatPw 
