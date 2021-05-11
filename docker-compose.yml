@@ -11,15 +11,17 @@ secrets:
 
 services:
   app:
-    image: erdlet/covistat:latest
+    image: erdlet/covistat:3be3d0d
     restart: on-failure
     secrets:
       - db_user
       - db_password
     environment:
+      DB_POOL_NAME: covistat-pool
+      DB_JNDI_NAME: java:/jdbc/covistat
       DB_URI: jdbc:mariadb://db/covistat
-      DB_USER: /run/secrets/db_user
-      DB_PASSWORD: /run/secrets/db_password
+      DB_USER_FILE: /run/secrets/db_user
+      DB_PASSWORD_FILE: /run/secrets/db_password
     ports:
       - 8081:8080
 

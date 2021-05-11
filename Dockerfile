@@ -1,5 +1,9 @@
-FROM jboss/wildfly:23.0.1.Final
+FROM erdlet/wildfly-mariadb:2301-272
 
-ADD wildfly-configs/modules /opt/jboss/wildfly/modules/
-ADD wildfly-configs/standalone.xml /opt/jboss/wildfly/standalone/configuration/
-ADD target/covistat.war /opt/jboss/wildfly/standalone/deployments/
+COPY target/covistat.war /opt/jboss/wildfly/standalone/deployments/
+COPY docker-entrypoint.sh /usr/local/bin/
+USER root
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+USER jboss
+
+ENTRYPOINT ["docker-entrypoint.sh"]

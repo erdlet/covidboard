@@ -1,5 +1,8 @@
 package de.erdlet.covistat.dataloader;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.json.bind.annotation.JsonbProperty;
 
 /**
@@ -21,6 +24,11 @@ public class APIResponseFeatureAttributes {
 
     @JsonbProperty("last_update")
     public String lastUpdate;
+
+    public LocalDate parseLastUpdateAsDate() {
+        final String lastUpdateWithoutText = lastUpdate.replace(" Uhr", "").replace(",", "");
+        return LocalDate.parse(lastUpdateWithoutText, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+    }
 
     @Override
     public String toString() {
