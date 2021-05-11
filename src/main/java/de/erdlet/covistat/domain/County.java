@@ -1,5 +1,6 @@
 package de.erdlet.covistat.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,8 +24,15 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "county")
+@Table(name = "counties")
+@NamedQueries({
+    @NamedQuery(name = "County.findAll", query = "SELECT c FROM County c"),
+    @NamedQuery(name = "County.findAllOrderedByAgs", query = "SELECT c FROM County c ORDER BY ags")
+})
 public class County {
+
+    public static final String FIND_ALL = "County.findAll";
+    public static final String FIND_ALL_ORDERED_BY_AGS = "County.findAllOrderedByAgs";
 
     @Id
     private String ags;
@@ -31,7 +41,7 @@ public class County {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "county_id")
+    @JoinColumn(name = "county_ags")
     private List<Statistic> statistics;
 
     public County() {
@@ -41,6 +51,14 @@ public class County {
         this.ags = ags;
         this.name = name;
         this.statistics = new ArrayList<>();
+    }
+
+    public Statistic addStatisticForDate(final Double sevenDayIncidence, final LocalDate rkiDate) {
+        final Statistic statistic = new Statistic(sevenDayIncidence, rkiDate, this);
+
+        this.statistics.add(statistic);
+
+        return statistic;
     }
 
     public String getAgs() {

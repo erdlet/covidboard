@@ -1,6 +1,6 @@
 package de.erdlet.covistat.domain;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,8 +23,18 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "statistic")
+@Table(name = "statistics")
+@NamedQueries({
+    @NamedQuery(name = Statistic.FIND_LATEST_STATISTICS, query = "SELECT new de.erdlet.covistat.domain.LatestCountyStatistic("
+            + "county.ags, county.name, stat.sevenDayIncidence, stat.rkiDate) "
+            + " FROM Statistic stat JOIN stat.county county WHERE stat.rkiDate = (SELECT max(stat2.rkiDate) FROM Statistic stat2 WHERE stat2.id = stat.id)"
+            + " ORDER BY county.ags"),
+    @NamedQuery(name = Statistic.FIND_FOR_DATE, query = "SELECT stat.id FROM Statistic stat WHERE rkiDate = :rkiDate AND county = :county")
+})
 public class Statistic {
+
+    public static final String FIND_LATEST_STATISTICS = "Statistic.findLatestStatisticsForCounties";
+    public static final String FIND_FOR_DATE = "Statistic.findForDate";
 
     /**
      * The unique ID of each statistic.
@@ -38,10 +50,10 @@ public class Statistic {
     private Double sevenDayIncidence;
 
     /**
-     * Shows at which timestamp the data is delivered by the RKI.
+     * Shows at which date the data is delivered by the RKI.
      */
-    @Column(name = "rki_timestamp")
-    private Instant rkiTimestamp;
+    @Column(name = "rki_date")
+    private LocalDate rkiDate;
 
     /**
      * The {@link County} to which this {@link Statistic} belongs.
@@ -52,9 +64,9 @@ public class Statistic {
     public Statistic() {
     }
 
-    public Statistic(final Double sevenDayIncidence, final Instant rkiTimestamp, final County county) {
+    public Statistic(final Double sevenDayIncidence, final LocalDate rkiDate, final County county) {
         this.sevenDayIncidence = sevenDayIncidence;
-        this.rkiTimestamp = rkiTimestamp;
+        this.rkiDate = rkiDate;
         this.county = county;
     }
 
@@ -74,12 +86,12 @@ public class Statistic {
         this.sevenDayIncidence = sevenDayIncidence;
     }
 
-    public Instant getRkiTimestamp() {
-        return rkiTimestamp;
+    public LocalDate getRkiDate() {
+        return rkiDate;
     }
 
-    public void setRkiTimestamp(final Instant rkiTimestamp) {
-        this.rkiTimestamp = rkiTimestamp;
+    public void setRkiDate(final LocalDate rkiDate) {
+        this.rkiDate = rkiDate;
     }
 
     public County getCounty() {
@@ -92,7 +104,7 @@ public class Statistic {
 
     @Override
     public int hashCode() {
-        return Objects.hash(county, id, rkiTimestamp, sevenDayIncidence);
+        return Objects.hash(county, id, rkiDate, sevenDayIncidence);
     }
 
     @Override
@@ -107,12 +119,12 @@ public class Statistic {
             return false;
         }
         final Statistic other = (Statistic) obj;
-        return Objects.equals(county, other.county) && Objects.equals(id, other.id) && Objects.equals(rkiTimestamp, other.rkiTimestamp)
+        return Objects.equals(county, other.county) && Objects.equals(id, other.id) && Objects.equals(rkiDate, other.rkiDate)
                 && Objects.equals(sevenDayIncidence, other.sevenDayIncidence);
     }
 
     @Override
     public String toString() {
-        return "Statistic [id=" + id + ", sevenDayIncidence=" + sevenDayIncidence + ", rkiTimestamp=" + rkiTimestamp + ", county=" + county + "]";
+        return "Statistic [id=" + id + ", sevenDayIncidence=" + sevenDayIncidence + ", rkiDate=" + rkiDate + "]";
     }
 }

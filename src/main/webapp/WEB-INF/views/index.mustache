@@ -12,7 +12,7 @@
 <main class="container my-3">
 <h1>Inzidenz-Dashboard</h1>
 
-{{#page.entries}}
+{{#statistics}}
 	<div class="card my-3">
 		<div class="card-body">
 				<h2 class="card-title h3">{{county}}</h2>
@@ -20,11 +20,11 @@
 				<li>7-Tage Inzidenz: {{sevenDayIncidence}}</li>
 			</ul>
 			<div class="text-muted">
-				Letztes Update: {{lastUpdate}}
+				Letztes Update: {{lastUpdateInGermanFormat}}
 			</div>
 		</div>
 	</div>
-{{/page.entries}}
+{{/statistics}}
 
 <details>
  <summary>Allgemeine Infos / Quellenvermerk</summary>

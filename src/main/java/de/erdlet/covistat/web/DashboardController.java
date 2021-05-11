@@ -4,10 +4,11 @@ import javax.inject.Inject;
 import javax.mvc.Controller;
 import javax.mvc.Models;
 import javax.mvc.UriRef;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import de.erdlet.covistat.statistics.CachingStatisticsProvider;
+import de.erdlet.covistat.statistics.DatabaseStatisticsProvider;
 
 @Path("")
 @Controller
@@ -20,12 +21,13 @@ public class DashboardController {
     Router router;
 
     @Inject
-    CachingStatisticsProvider statisticsProvider;
+    DatabaseStatisticsProvider statisticsProvider;
 
     @GET
     @UriRef("dashboard")
+    @Transactional
     public String index() {
-        models.put("page", new DashboardPage(statisticsProvider.getRawStatisticData()));
+        models.put("statistics", statisticsProvider.loadLatestCountyStatistics());
         models.put("router", router);
         return "index.mustache";
     }
