@@ -28,7 +28,7 @@ public class JpaStatistics implements Statistics {
 
     @Override
     public boolean containsStatisticForDateAndCounty(final LocalDate date, final County county) {
-        return em.createNamedQuery(Statistic.FIND_FOR_DATE, Statistic.class).setParameter("rkiDate", date).setParameter("county", county).getResultList()
+        return em.createNamedQuery(Statistic.FIND_FOR_DATE, Long.class).setParameter("rkiDate", date).setParameter("county", county).getResultList()
                 .size() > 0;
     }
 
