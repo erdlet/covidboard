@@ -11,8 +11,6 @@ services:
       DB_URI: jdbc:mariadb://db/covistat
       DB_USER: covistat 
       DB_PASSWORD: covistatPw 
-    links:
-      - db:db
     ports:
       - 8080:8080
 
