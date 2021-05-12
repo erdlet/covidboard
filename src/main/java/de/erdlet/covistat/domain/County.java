@@ -2,8 +2,10 @@ package de.erdlet.covistat.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,13 +28,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "counties")
 @NamedQueries({
-    @NamedQuery(name = "County.findAll", query = "SELECT c FROM County c"),
-    @NamedQuery(name = "County.findAllOrderedByAgs", query = "SELECT c FROM County c ORDER BY ags")
+    @NamedQuery(name = County.FIND_ALL, query = "SELECT c FROM County c"),
+    @NamedQuery(name = County.FIND_ALL_ORDERED_BY_AGS, query = "SELECT c FROM County c ORDER BY ags"),
+    @NamedQuery(name = County.FIND_BY_AGS_WITH_STATISTICS, query = "SELECT c FROM County c JOIN FETCH c.statistics WHERE ags = :ags")
 })
 public class County {
 
     public static final String FIND_ALL = "County.findAll";
     public static final String FIND_ALL_ORDERED_BY_AGS = "County.findAllOrderedByAgs";
+    public static final String FIND_BY_AGS_WITH_STATISTICS = "County.findByAgsWithStatistics";
+
+    private static final int STATISTIC_HISTORY_DAYS = 14;
 
     @Id
     private String ags;
@@ -59,6 +65,16 @@ public class County {
         this.statistics.add(statistic);
 
         return statistic;
+    }
+
+    public Statistic findLatestStatistic() {
+        return statistics.stream().max(Comparator.comparing(Statistic::getRkiDate))
+                .orElseThrow(() -> new IllegalStateException("Expecting County to have at least one statistic"));
+    }
+
+    public List<Statistic> findStatisticsForLastFourteenDays() {
+        return statistics.stream().filter(stat -> stat.getRkiDate().isAfter(LocalDate.now().minusDays(STATISTIC_HISTORY_DAYS)))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public String getAgs() {

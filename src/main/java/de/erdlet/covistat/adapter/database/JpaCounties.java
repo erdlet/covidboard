@@ -1,6 +1,7 @@
 package de.erdlet.covistat.adapter.database;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -35,5 +36,10 @@ public class JpaCounties implements Counties {
     @Override
     public List<County> findAllOrderedByAgs() {
         return em.createNamedQuery(County.FIND_ALL_ORDERED_BY_AGS, County.class).getResultList();
+    }
+
+    @Override
+    public Optional<County> findByAgsWithStatistics(final String ags) {
+        return em.createNamedQuery(County.FIND_BY_AGS_WITH_STATISTICS, County.class).setParameter("ags", ags).getResultStream().findFirst();
     }
 }

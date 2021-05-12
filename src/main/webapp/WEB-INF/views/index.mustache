@@ -10,21 +10,22 @@
 {{> _header }}
 
 <main class="container my-3">
-<h1>Inzidenz-Dashboard</h1>
+<h1>7-Tage Inzidenz-Dashboard</h1>
 
-{{#statistics}}
+{{#page.content}}
 	<div class="card my-3">
 		<div class="card-body">
-				<h2 class="card-title h3">{{county}}</h2>
-			<ul>
-				<li>7-Tage Inzidenz: {{sevenDayIncidence}}</li>
-			</ul>
+				<h2 class="card-title h3">{{ countyName }}</h2>
+				<p class="h2">{{ sevenDayIncidence }}</p>
 			<div class="text-muted">
-				Letztes Update: {{lastUpdateInGermanFormat}}
+				Letztes Update: {{ lastUpdate }}
+			</div>
+			<div>
+				<a href="{{#linkToCountyDetails}}{{ags}}{{/linkToCountyDetails}}">Zur Detailsansicht</a>
 			</div>
 		</div>
 	</div>
-{{/statistics}}
+{{/page.content}}
 
 <details>
  <summary>Allgemeine Infos / Quellenvermerk</summary>

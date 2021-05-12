@@ -21,13 +21,17 @@ public class DashboardController {
     Router router;
 
     @Inject
+    Formatters formatters;
+
+    @Inject
     DatabaseStatisticsProvider statisticsProvider;
 
     @GET
     @UriRef("dashboard")
     @Transactional
     public String index() {
-        models.put("statistics", statisticsProvider.loadLatestCountyStatistics());
+        models.put("page", new DashboardPage(statisticsProvider.loadLatestCountyStatistics()));
+        models.put("linkToCountyDetails", router.linkToCountyDetailsFunc());
         models.put("router", router);
         return "index.mustache";
     }
