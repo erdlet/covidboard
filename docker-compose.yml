@@ -11,7 +11,7 @@ secrets:
 
 services:
   app:
-    image: erdlet/covistat:1ec548a
+    image: erdlet/covistat:7f1acb
     restart: on-failure
     secrets:
       - db_user
