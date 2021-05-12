@@ -1,6 +1,7 @@
 package de.erdlet.covistat.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Interface for accessing {@link County} data.
@@ -30,4 +31,12 @@ public interface Counties {
      * @return a List of all existing {@link County} objects ordered ascending by their AGS. Will never be null.
      */
     List<County> findAllOrderedByAgs();
+
+    /**
+     * Searches for a {@link County} by its AGS and loads also all applied statistics.
+     *
+     * @param ags the AGS for which the {@link County} shall be resolved
+     * @return either the {@link County} or an empty result
+     */
+    Optional<County> findByAgsWithStatistics(final String ags);
 }

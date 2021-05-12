@@ -1,7 +1,6 @@
 package de.erdlet.covistat.domain;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Contains the latest {@link Statistic} for a {@link County}.
@@ -11,23 +10,25 @@ import java.time.format.DateTimeFormatter;
  */
 public final class LatestCountyStatistic {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
     public final String ags;
     public final String county;
-    public final String sevenDayIncidence;
-    public final String lastUpdateInGermanFormat;
+    public final Double sevenDayIncidence;
+    public final LocalDate lastUpdate;
+
+    public LatestCountyStatistic(final County county, final Statistic statistic) {
+        this(county.getAgs(), county.getName(), statistic.getSevenDayIncidence(), statistic.getRkiDate());
+    }
 
     public LatestCountyStatistic(final String ags, final String county, final Double sevenDayIncidence, final LocalDate rkiDate) {
         this.ags = ags;
         this.county = county;
-        this.sevenDayIncidence = String.format("%.2f", sevenDayIncidence);
-        this.lastUpdateInGermanFormat = FORMATTER.format(rkiDate);
+        this.sevenDayIncidence = sevenDayIncidence;
+        this.lastUpdate = rkiDate;
     }
 
     @Override
     public String toString() {
         return "LatestCountyStatistic [ags=" + ags + ", county=" + county + ", sevenDayIncidence=" + sevenDayIncidence + ", lastUpdateInGermanFormat="
-                + lastUpdateInGermanFormat + "]";
+                + lastUpdate + "]";
     }
 }
