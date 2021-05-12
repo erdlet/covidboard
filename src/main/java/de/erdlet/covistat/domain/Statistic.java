@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = Statistic.FIND_LATEST_STATISTICS, query = "SELECT new de.erdlet.covistat.domain.LatestCountyStatistic("
             + "county.ags, county.name, stat.sevenDayIncidence, stat.rkiDate) "
-            + " FROM Statistic stat JOIN stat.county county WHERE stat.rkiDate = (SELECT max(stat2.rkiDate) FROM Statistic stat2 WHERE stat2.id = stat.id)"
+                + " FROM Statistic stat JOIN stat.county county WHERE stat.rkiDate = (SELECT max(stat2.rkiDate) FROM Statistic stat2 WHERE stat2.county = county)"
             + " ORDER BY county.ags"),
     @NamedQuery(name = Statistic.FIND_FOR_DATE, query = "SELECT stat.id FROM Statistic stat WHERE rkiDate = :rkiDate AND county = :county")
 })
