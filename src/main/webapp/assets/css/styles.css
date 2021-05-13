@@ -1,0 +1,10 @@
+.cs-card-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem 1rem;
+}
+
+.cs-card {
+	width: 500px;
+	flex: 1 1 auto;
+}

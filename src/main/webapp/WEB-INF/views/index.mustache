@@ -5,6 +5,7 @@
     <title>CoviStat - Dashboard</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ request.getContextPath }}/assets/css/styles.css" />
 </head>
 <body>
 {{> _header }}
@@ -12,8 +13,9 @@
 <main class="container my-3">
 <h1>7-Tage Inzidenz-Dashboard</h1>
 
+<div class="cs-card-container">
 {{#page.content}}
-	<div class="card my-3">
+	<div class="card my-3 mx-1 cs-card">
 		<div class="card-body">
 				<h2 class="card-title h3">{{ countyName }}</h2>
 				<p class="h2">{{ sevenDayIncidence }}</p>
@@ -26,6 +28,7 @@
 		</div>
 	</div>
 {{/page.content}}
+</div>
 
 <details>
  <summary>Allgemeine Infos / Quellenvermerk</summary>
