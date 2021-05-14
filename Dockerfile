@@ -6,4 +6,6 @@ USER root
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 USER jboss
 
+ENV TZ="Europe/Berlin"
+
 ENTRYPOINT ["docker-entrypoint.sh"]
