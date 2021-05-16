@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
 import javax.ejb.Schedules;
 import javax.ejb.Singleton;
@@ -35,6 +36,11 @@ public class StatisticImporter {
 
     @Inject
     APIClient apiClient;
+
+    @PostConstruct
+    public void importOnStartupIfDataIsOutdated() {
+        importNewStatistics();
+    }
 
     @Schedules({
         @Schedule(minute = "0", hour = "2"),
