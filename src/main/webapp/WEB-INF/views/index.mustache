@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CoviStat - Dashboard</title>
+    <title>CovidBoard - Übersicht</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ request.getContextPath }}/assets/css/styles.css" />
@@ -11,7 +11,7 @@
 {{> _header }}
 
 <main class="container my-3">
-<h1>7-Tage Inzidenz-Dashboard</h1>
+<h1>Aktuelle 7-Tage Inzidenzen</h1>
 
 <div class="cs-card-container">
 {{#page.content}}
@@ -30,15 +30,6 @@
 {{/page.content}}
 </div>
 
-<details>
- <summary>Allgemeine Infos / Quellenvermerk</summary>
- Willkommen bei meinem kleinen, privaten Dashboard zur Information bzgl. der Corona Inzidenzen.
-<br><br>
-Dieses Board zeigt die aktuellen Zahlen des RKI auf Basis des <a href="https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=BL,BL_ID,county,last_update,cases7_per_100k,AGS&returnGeometry=false&outSR=4326&f=json">COVID-19 Datenhubs des Bundesamtes fuer Kartographie und Geodaesi</a>.
-<br><br>
-Quellenvermerk: Robert Koch-Institut (RKI), dl-de/by-2-0  Haftungsausschluss: „Die Inhalte, die über die Internetseiten des Robert Koch-Instituts zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“
-
-</details>
 </main>
 
 {{> _footer }}

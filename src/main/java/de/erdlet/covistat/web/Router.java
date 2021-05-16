@@ -22,6 +22,10 @@ public class Router {
         return mvcContext.uri("dashboard").toASCIIString();
     }
 
+    public String linkToCommonInformation() {
+        return mvcContext.uri("common-info").toASCIIString();
+    }
+
     public String linkToImpress() {
         return mvcContext.uri("impress").toASCIIString();
     }
