@@ -1,0 +1,28 @@
+{% extends "WEB-INF/views/base.peb" %}
+
+{% block pageTitle %}{{ page.countyName }}{% endblock %} 
+
+{% block content %}
+<h1>Inzidenz-Details zu {{ page.countyName }}</h1>
+
+<div class="card my-3">
+    <div class="card-body">
+        <h2 class="card-title h3">Aktuelle 7-Tage Inzidenz</h2>
+        <p class="h2">{{ page.currentDataContent.sevenDayIncidence }}</p>
+        <div class="text-muted">Letztes Update: {{page.currentDataContent.lastUpdate }}</div>
+    </div>
+</div>
+
+<div class="card my-3">
+    <div class="card-body">
+        <h2 class="card-title h3">7-Tage Inzidenzen der letzten 14 Tage</h2>
+        <ul>
+            {% for historyEntry in page.historyCardContentEntries %}
+                <li>{{ historyEntry.lastUpdate }}: {{historyEntry.sevenDayIncidence }}</li>
+             {% else %}
+                <li>Es sind keine Eintraege vorhanden</li>
+             {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

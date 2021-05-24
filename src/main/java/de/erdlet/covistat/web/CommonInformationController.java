@@ -22,6 +22,6 @@ public class CommonInformationController {
     @UriRef("common-info")
     public Response showCommonInfo() {
         models.put("router", router);
-        return Response.ok("common-info.mustache").build();
+        return Response.ok("common-info.peb").build();
     }
 }

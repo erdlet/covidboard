@@ -1,0 +1,11 @@
+{% extends "WEB-INF/views/base.peb" %}
+
+{% block pageTitle %}Seite nicht gefunden{% endblock %}
+
+{% block content %}
+<h1>Fehler 404 - Kein Inhalt gefunden</h1>
+
+<p id="explanation">Es konnte kein Inhalt zu dieser Anfrage gefunden werden. Bitte pruefen Sie ihre Eingaben.</p>
+
+<a href="{{ router.linkToDashboard() }}">Zur Startseite</a>
+{% endblock %}

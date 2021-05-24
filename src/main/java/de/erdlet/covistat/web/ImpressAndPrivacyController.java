@@ -23,7 +23,7 @@ public class ImpressAndPrivacyController {
     @UriRef("impress")
     public Response showImpress() {
         models.put("router", router);
-        return Response.ok("impress.mustache").build();
+        return Response.ok("impress.peb").build();
     }
 
     @GET
@@ -31,6 +31,6 @@ public class ImpressAndPrivacyController {
     @UriRef("privacy")
     public Response showPrivacyDeclaration() {
         models.put("router", router);
-        return Response.ok("privacy.mustache").build();
+        return Response.ok("privacy.peb").build();
     }
 }

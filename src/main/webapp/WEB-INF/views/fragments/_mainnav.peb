@@ -1,0 +1,9 @@
+<header>
+    <nav class="nav navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <div class="h2 text-white">
+                <a href="{{ router.linkToDashboard() }}">CovidBoard</a>
+            </div>
+        </div>
+    </nav>
+</header>

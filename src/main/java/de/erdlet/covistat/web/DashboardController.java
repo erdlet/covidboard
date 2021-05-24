@@ -33,6 +33,6 @@ public class DashboardController {
         models.put("page", new DashboardPage(statisticsProvider.loadLatestCountyStatistics()));
         models.put("linkToCountyDetails", router.linkToCountyDetailsFunc());
         models.put("router", router);
-        return "index.mustache";
+        return "index.peb";
     }
 }

@@ -47,11 +47,11 @@ public class CountyController {
     private Response handleSuccessfulRequest(final CountyDetails countyDetails) {
         models.put("page", new DetailsPage(countyDetails));
         models.put("router", router);
-        return Response.ok("details.mustache").build();
+        return Response.ok("details.peb").build();
     }
 
     private Response handleUnknownCounty(final String ags) {
         models.put("router", router);
-        return Response.status(Response.Status.NOT_FOUND).entity("404.mustache").build();
+        return Response.status(Response.Status.NOT_FOUND).entity("404.peb").build();
     }
 }

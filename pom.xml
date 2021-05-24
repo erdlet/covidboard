@@ -61,7 +61,7 @@
 
 		<dependency>
 			<groupId>org.eclipse.krazo.ext</groupId>
-			<artifactId>krazo-mustache</artifactId>
+			<artifactId>krazo-pebble</artifactId>
 			<version>${krazo.version}</version>
 		</dependency>
 
