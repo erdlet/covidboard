@@ -11,8 +11,7 @@ secrets:
 
 services:
   app:
-    image: erdlet/covistat:5053fbc
-    restart: on-failure
+    image: erdlet/covistat:7b1f095
     secrets:
       - db_user
       - db_password
@@ -27,7 +26,6 @@ services:
 
   db:
     image: mariadb
-    restart: on-failure
     secrets:
       - db_root_password
       - db_user
