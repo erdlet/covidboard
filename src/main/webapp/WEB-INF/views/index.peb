@@ -11,7 +11,7 @@
         <div class="card-body">
             <h2 class="card-title h3">{{ contentCard.countyName }}</h2>
             <p class="h2">{{ contentCard.sevenDayIncidence }}</p>
-            <p class="text-muted">Letztes Update: {{ lastUpdate }}</p>
+            <p class="text-muted">Letztes Update: {{ contentCard.lastUpdate }}</p>
             <div>
                 <a href="{{ router.linkToCountyDetails(contentCard.ags) }}">Zur Detailsansicht</a>
             </div>
