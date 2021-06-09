@@ -1,4 +1,4 @@
-name: CoviStat CI
+name: CovidBoard CI
 
 on:
   push:

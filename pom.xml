@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.erdlet</groupId>
-	<artifactId>covistat</artifactId>
+	<artifactId>covidboard</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>covistat</name>
+	<name>covidboard</name>
 
 	<properties>
 		<jakartaee-api.version>8.0.0</jakartaee-api.version>
@@ -94,7 +94,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>covistat</finalName>
+		<finalName>covidboard</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
