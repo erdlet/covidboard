@@ -1,22 +1,55 @@
 {% extends "WEB-INF/views/base.peb" %} 
 
-{% block pageTitle %}Übersicht{% endblock %}
+{% block pageTitle %}Übersicht{% endblock %} 
 
 {% block content %}
+
 <h1>Aktuelle 7-Tage Inzidenzen</h1>
 
+<section id="search" class="search-section my-3">
+    <h2>Suche</h2>
+    <form action="{{ router.linkToDashboard() }}" method="get">
+        <fieldset class="form-group">
+            <div id="search-field-label">
+                <label for="search-field">Landkreis-/ Städtesuche</label>
+            </div>
+            <div id="search-field-helptext" class="form-text">
+              Zur Landkreis-/Städtesuche können folgende Suchmuster verwendet werden:
+              <ul>
+                <li>Bestandteile des Namens, bspw. "Neuburg"</li>
+                <li>Der ganze bzw. Teile des Gemeindeschlüssel, bspw. 09176</li>
+              </ul>
+            </div>
+            <input id="search-field" class="form-control" type="search" name="filter" />
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Suche ausführen</button>
+    </form>
+</section>
+
+{% if filter is not null %}
+<section id="search-result">
+<h2>Suchergebnisse für Filter {{ filter }}</h2>
+
+{% if page.content is empty %}
+Es konnten keine Einträge für die Suche gefunden werden.
+{% else %}
 <div class="cs-card-container">
-{% for contentCard in page.content %}
-    <div class="card my-3 mx-1 cs-card">
-        <div class="card-body">
-            <h2 class="card-title h3">{{ contentCard.countyName }}</h2>
-            <p class="h2">{{ contentCard.sevenDayIncidence }}</p>
-            <p class="text-muted">Letztes Update: {{ contentCard.lastUpdate }}</p>
-            <div>
-                <a href="{{ router.linkToCountyDetails(contentCard.ags) }}">Zur Detailsansicht</a>
+    {% for contentCard in page.content %}
+        <div class="card my-3 mx-1 cs-card">
+            <div class="card-body">
+                <h2 class="card-title h3">{{ contentCard.countyName }}</h2>
+                <p class="h2">{{ contentCard.sevenDayIncidence }}</p>
+                <p class="text-muted">Letztes Update: {{ contentCard.lastUpdate }}</p>
+                <div>
+                    <a href="{{ router.linkToCountyDetails(contentCard.ags) }}">Zur Detailsansicht</a>
+                </div>
             </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
 </div>
+{% endif %}
+</section>
+{% endif %}
+
 {% endblock %}

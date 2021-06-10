@@ -11,7 +11,7 @@
 
     {% include "WEB-INF/views/fragments/_mainnav.peb" %}
 
-    <main class="container my-3">{% block content %}{% endblock %}</main>
+    <main class="container my-4">{% block content %}{% endblock %}</main>
 
     {% include "WEB-INF/views/fragments/_footer.peb" %}
 </body>

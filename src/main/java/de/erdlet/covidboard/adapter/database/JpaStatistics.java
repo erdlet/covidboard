@@ -28,12 +28,22 @@ public class JpaStatistics implements Statistics {
 
     @Override
     public boolean containsStatisticForDateAndCounty(final LocalDate date, final County county) {
-        return em.createNamedQuery(Statistic.FIND_FOR_DATE, Long.class).setParameter("rkiDate", date).setParameter("county", county).getResultList()
+        return em.createNamedQuery(Statistic.FIND_FOR_DATE, Long.class)
+                .setParameter("rkiDate", date)
+                .setParameter("county", county)
+                .getResultList()
                 .size() > 0;
     }
 
     @Override
     public List<LatestCountyStatistic> findLatestStatisticsForCounties() {
         return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS, LatestCountyStatistic.class).getResultList();
+    }
+
+    @Override
+    public List<LatestCountyStatistic> findLatestStatisticsForCountyFilter(final String filter) {
+        return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS_FOR_FILTER, LatestCountyStatistic.class)
+                .setParameter("filterQuery", QueryUtils.formatParameterForContainsQuery(filter))
+                .getResultList();
     }
 }

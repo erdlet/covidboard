@@ -1,6 +1,7 @@
 package de.erdlet.covidboard.statistics;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -40,5 +41,16 @@ public class DatabaseStatisticsProvider {
         LOGGER.debug("Fetched latest statistics: {}", latestStatistics);
 
         return latestStatistics;
+    }
+
+    @Transactional
+    public List<LatestCountyStatistic> loadLatestCountyStatisticsForFilter(final String filter) {
+        Objects.requireNonNull(filter, "filter must not be null");
+        LOGGER.debug("Searching latest statistics for filter: {}", filter);
+
+        final List<LatestCountyStatistic> latestStatisticsForFilter = statistics.findLatestStatisticsForCountyFilter(filter);
+        LOGGER.debug("Found latest statistics for filter '{}': {}", filter, latestStatisticsForFilter);
+
+        return latestStatisticsForFilter;
     }
 }

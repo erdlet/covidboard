@@ -33,4 +33,13 @@ public interface Statistics {
      * @return List of the latest {@link Statistic}s for each saved {@link County}. Will never be null.
      */
     List<LatestCountyStatistic> findLatestStatisticsForCounties();
+
+    /**
+     * Collects the latest {@link Statistic}s for {@link County}s matching the filter.
+     *
+     * @param filter a filter provided by an user. The filter is expected to be a part of a {@link County}'s name or a (part
+     * of) an AGS.
+     * @return a {@link List} of the latest {@link Statistic}s where the {@link County} matches the filter
+     */
+    List<LatestCountyStatistic> findLatestStatisticsForCountyFilter(final String filter);
 }

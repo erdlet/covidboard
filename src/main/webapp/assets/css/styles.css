@@ -1,3 +1,7 @@
+label {
+  font-weight: bold;
+}
+
 .cs-card-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -7,4 +11,9 @@
 .cs-card {
 	width: 500px;
 	flex: 1 1 auto;
+}
+
+.search-section {
+	border: 1px solid #00000020;
+	padding: 1rem;
 }
