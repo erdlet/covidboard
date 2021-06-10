@@ -41,7 +41,6 @@ public class DashboardController {
 
         models.put("page", new DashboardPage(fetchStatisticsBasedOnFilter(filter)));
         models.put("filter", isFilterSet(filter) ? filter : null);
-        models.put("linkToCountyDetails", router.linkToCountyDetailsFunc());
         models.put("router", router);
         return "index.peb";
     }
