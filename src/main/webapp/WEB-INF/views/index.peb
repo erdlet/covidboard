@@ -20,7 +20,7 @@
                 <li>Der ganze bzw. Teile des Gemeindeschlüssel, bspw. 09176</li>
               </ul>
             </div>
-            <input id="search-field" class="form-control" type="search" name="filter" />
+            <input id="search-field" class="form-control" type="search" name="filter" value="{{ filter }}"/>
         </fieldset>
 
         <button type="submit" class="btn btn-primary">Suche ausführen</button>
