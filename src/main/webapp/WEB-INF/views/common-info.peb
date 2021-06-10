@@ -26,9 +26,8 @@
 
 <article class="my-4">
     <h2 class="h3">Warum sind hier nicht alle Städte / Landkreise?</h2>
-    Bislang finden sich hier nur Orte die von persönlichem Interesse sind. Sollten Ergänzungswünsche kommen, kann ich diese gerne per <a
-        href="mailto:erdletob@gmail.com">Email (erdletob at gmail dot com)</a> entgegennehmen. Nehmen die Wünsche überhand, muss ich mir wohl Gedanken über eine
-    bessere Lösung machen.
+    Mittlerweile werden die Daten aller vorhandenen Landkreise / Städte mit einem allgemeinen Gemeinde Schlüsel (AGS) importiert. Leider
+    haben offenbar die Berliner Bezirke diesen Schlüssel nicht, sodass CovidBoard diese nicht anzeigen kann. Sorry :/ 
 </article>
 
 <article class="my-4">

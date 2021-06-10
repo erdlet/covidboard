@@ -29,17 +29,12 @@ public class APIClient {
 
     @Inject
     @ConfigProperty(name = "api.uri")
-    String uriWithPlaceholder;
-
-    @Inject
-    @ConfigProperty(name = "filter.ags")
-    String ags;
+    String apiUri;
 
     public List<APIResponseFeature> fetchStatistics() {
-        final String finalUri = uriWithPlaceholder.replace(":ags", ags);
 
         try {
-            final HttpRequest request = HttpRequest.newBuilder(URI.create(finalUri)).GET().build();
+            final HttpRequest request = HttpRequest.newBuilder(URI.create(apiUri)).GET().build();
             final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3)).build();
 
             final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

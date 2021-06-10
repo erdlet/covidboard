@@ -71,8 +71,10 @@ public class StatisticImporter {
             if (agsToCounty.containsKey(attr.ags)) {
                 LOGGER.info("Found County for AGS {}", attr.ags);
                 addStatisticToExistingCounty(agsToCounty, attr);
-            } else {
+            } else if (attr.ags != null && !attr.ags.isBlank()) {
                 createCountyAndAddStatistic(attr);
+            } else {
+                LOGGER.warn("Could not import data for FeatureAttribute <{}> due to missing ags", attr);
             }
         }
     }
