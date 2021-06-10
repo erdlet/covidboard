@@ -35,7 +35,7 @@ public class APIClient {
 
         try {
             final HttpRequest request = HttpRequest.newBuilder(URI.create(apiUri)).GET().build();
-            final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3)).build();
+            final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
 
             final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -45,7 +45,7 @@ public class APIClient {
 
 
         } catch (final HttpTimeoutException ex) {
-            LOGGER.warning("API could not be accessed within 3 seconds. Returning empty result.");
+            LOGGER.warning("API could not be accessed within 5 seconds. Returning empty result.");
             return List.of();
         } catch (final IOException e) {
             LOGGER.warning("IO error occured during process. Returning empty result.");
