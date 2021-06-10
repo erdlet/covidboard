@@ -8,6 +8,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+
 @Path("allgemeines-und-quellen")
 @Controller
 public class CommonInformationController {
@@ -20,6 +22,7 @@ public class CommonInformationController {
 
     @GET
     @UriRef("common-info")
+    @Counted(name = "common_info_views", absolute = true)
     public Response showCommonInfo() {
         models.put("router", router);
         return Response.ok("common-info.peb").build();

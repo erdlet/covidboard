@@ -8,6 +8,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+
 @Path("legal")
 @Controller
 public class ImpressAndPrivacyController {
@@ -21,6 +23,7 @@ public class ImpressAndPrivacyController {
     @GET
     @Path("impress")
     @UriRef("impress")
+    @Counted(name = "impress_views", absolute = true)
     public Response showImpress() {
         models.put("router", router);
         return Response.ok("impress.peb").build();
@@ -29,6 +32,7 @@ public class ImpressAndPrivacyController {
     @GET
     @Path("privacy")
     @UriRef("privacy")
+    @Counted(name = "privacy_declaration_views", absolute = true)
     public Response showPrivacyDeclaration() {
         models.put("router", router);
         return Response.ok("privacy.peb").build();

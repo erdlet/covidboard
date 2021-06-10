@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+
 import de.erdlet.covidboard.statistics.DatabaseStatisticsProvider;
 
 @Path("")
@@ -29,6 +31,7 @@ public class DashboardController {
     @GET
     @UriRef("dashboard")
     @Transactional
+    @Counted(name = "dashboard_views", absolute = true)
     public String index() {
         models.put("page", new DashboardPage(statisticsProvider.loadLatestCountyStatistics()));
         models.put("linkToCountyDetails", router.linkToCountyDetailsFunc());

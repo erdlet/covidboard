@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.metrics.MetricRegistry;
+
 import de.erdlet.covidboard.domain.County;
 import de.erdlet.covidboard.domain.CountyDetails;
 import de.erdlet.covidboard.statistics.CountyDetailsProvider;
@@ -19,9 +21,12 @@ import de.erdlet.covidboard.statistics.CountyDetailsProvider;
  * @author erdlet
  *
  */
-@Controller
 @Path("counties")
+@Controller
 public class CountyController {
+
+    @Inject
+    MetricRegistry metricRegistry;
 
     @Inject
     Router router;
@@ -39,6 +44,8 @@ public class CountyController {
     @Path("{ags}")
     @UriRef("countyDetails")
     public Response showCountyDetails(@PathParam("ags") final String ags) {
+        this.metricRegistry.counter("county_details_" + ags + "_views").inc();
+
         return countyDetailsProvider.findCountyDetailsForAgs(ags)
                 .map(this::handleSuccessfulRequest)
                 .orElseGet(() -> handleUnknownCounty(ags));
