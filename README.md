@@ -6,7 +6,7 @@ Diese Webanwendung zeigt fuer ausgewaehlte Landkreise die 7 Tage Inzidenz sowie 
 
 - Jakarta EE 8 
 - Jakarta MVC / Eclipse Krazo
-- Eclipse Krazo Mustache Extension
+- Eclipse Krazo Pebble Extension
 - WildFly 22 
 - MariaDB
 
