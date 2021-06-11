@@ -53,4 +53,20 @@ public class DatabaseStatisticsProvider {
 
         return latestStatisticsForFilter;
     }
+
+    @Transactional
+    public List<LatestCountyStatistic> loadLatestCountyStatisticsForAgsList(final List<String> ags) {
+        Objects.requireNonNull(ags, "filter must not be null");
+        LOGGER.debug("Searching latest statistics for AGS list: {}", ags);
+
+        if (ags.isEmpty()) {
+            LOGGER.debug("No AGS provided in list. Returning empty result.");
+            return List.of();
+        }
+
+        final List<LatestCountyStatistic> latestStatisticsForAgsList = statistics.findLatestStatisticsForAgsList(ags);
+        LOGGER.debug("Found latest statistics for AGS list <{}>: {}", ags, latestStatisticsForAgsList);
+
+        return latestStatisticsForAgsList;
+    }
 }

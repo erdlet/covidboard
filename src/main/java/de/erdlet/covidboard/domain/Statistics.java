@@ -42,4 +42,12 @@ public interface Statistics {
      * @return a {@link List} of the latest {@link Statistic}s where the {@link County} matches the filter
      */
     List<LatestCountyStatistic> findLatestStatisticsForCountyFilter(final String filter);
+
+    /**
+     * Collects the latest {@link Statistic}s for the {@link County}s identified by the provided AGS.
+     *
+     * @param ags a {@link List} of AGS for which the latest statistics shall be loaded
+     * @return a {@link List} of all found statistics for the AGS
+     */
+    List<LatestCountyStatistic> findLatestStatisticsForAgsList(final List<String> ags);
 }

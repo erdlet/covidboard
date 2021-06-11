@@ -46,4 +46,9 @@ public class JpaStatistics implements Statistics {
                 .setParameter("filterQuery", QueryUtils.formatParameterForContainsQuery(filter))
                 .getResultList();
     }
+
+    @Override
+    public List<LatestCountyStatistic> findLatestStatisticsForAgsList(final List<String> ags) {
+        return em.createNamedQuery(Statistic.FIND_STATISTICS_FOR_AGS, LatestCountyStatistic.class).setParameter("agsList", ags).getResultList();
+    }
 }

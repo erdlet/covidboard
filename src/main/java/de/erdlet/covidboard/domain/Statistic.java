@@ -33,7 +33,12 @@ import javax.persistence.Table;
     @NamedQuery(name = Statistic.FIND_LATEST_STATISTICS_FOR_FILTER, query = "SELECT"
             + " new de.erdlet.covidboard.domain.LatestCountyStatistic(county.ags, county.name, stat.sevenDayIncidence, stat.rkiDate)"
             + " FROM Statistic stat JOIN stat.county county WHERE stat.rkiDate = (SELECT max(stat2.rkiDate) FROM Statistic stat2 WHERE stat2.county = county)"
-                + " AND (county.ags LIKE :filterQuery OR county.name LIKE :filterQuery)"
+            + " AND (county.ags LIKE :filterQuery OR county.name LIKE :filterQuery)"
+            + " ORDER BY county.ags"),
+    @NamedQuery(name = Statistic.FIND_STATISTICS_FOR_AGS, query = "SELECT"
+            + " new de.erdlet.covidboard.domain.LatestCountyStatistic(county.ags, county.name, stat.sevenDayIncidence, stat.rkiDate)"
+            + " FROM Statistic stat JOIN stat.county county WHERE stat.rkiDate = (SELECT max(stat2.rkiDate) FROM Statistic stat2 WHERE stat2.county = county)"
+            + " AND county.ags IN :agsList"
             + " ORDER BY county.ags")
 })
 public class Statistic {
@@ -41,6 +46,7 @@ public class Statistic {
     public static final String FIND_LATEST_STATISTICS = "Statistic.findLatestStatisticsForCounties";
     public static final String FIND_FOR_DATE = "Statistic.findForDate";
     public static final String FIND_LATEST_STATISTICS_FOR_FILTER = "Statistic.findLatestStatisticsForCountyFilter";
+    public static final String FIND_STATISTICS_FOR_AGS = "Statistic.findStatisticsForAgs";
 
     /**
      * The unique ID of each statistic.
