@@ -20,6 +20,12 @@ public class Router {
         return mvcContext.uri("dashboard").toASCIIString();
     }
 
+    public String redirectToDashboard(final String filter) {
+        final String uri = "redirect:" + linkToDashboard();
+
+        return filter == null || filter.isBlank() ? uri : uri + "?filter=" + filter;
+    }
+
     public String linkToCommonInformation() {
         return mvcContext.uri("common-info").toASCIIString();
     }
@@ -34,5 +40,13 @@ public class Router {
 
     public String linkToCountyDetails(final String ags) {
         return mvcContext.uriBuilder("countyDetails").build(ags).toASCIIString();
+    }
+
+    public String linkForAddingFavorite() {
+        return mvcContext.uri("add-favorite").toASCIIString();
+    }
+
+    public String linkForRemovingFavorite(final String ags) {
+        return mvcContext.uriBuilder("remove-favorite").build(ags).toASCIIString();
     }
 }
