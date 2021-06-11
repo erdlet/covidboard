@@ -8,11 +8,15 @@ import de.erdlet.covidboard.domain.LatestCountyStatistic;
 public final class DashboardPage {
 
     public final List<CardContent> content;
+    public final List<CardContent> favorites;
 
-    public DashboardPage(final List<LatestCountyStatistic> latestStatistics) {
+    public DashboardPage(final List<LatestCountyStatistic> latestStatistics, final List<LatestCountyStatistic> favorites) {
+        // TODO: Favoriten rausfiltern
         this.content = latestStatistics.stream().map(CardContent::new).collect(Collectors.toUnmodifiableList());
+        this.favorites = favorites.stream().map(CardContent::new).collect(Collectors.toUnmodifiableList());
     }
 
+    // TODO: Attribut für Favorit ja / nein
     public static class CardContent {
         public final String countyName;
         public final String ags;

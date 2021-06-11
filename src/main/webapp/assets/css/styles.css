@@ -17,3 +17,13 @@ label {
 	border: 1px solid #00000020;
 	padding: 1rem;
 }
+
+.cs-card-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cs-card-inline-form {
+	margin: 0;
+}
