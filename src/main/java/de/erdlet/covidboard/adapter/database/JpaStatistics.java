@@ -37,18 +37,29 @@ public class JpaStatistics implements Statistics {
 
     @Override
     public List<LatestCountyStatistic> findLatestStatisticsForCounties() {
-        return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS, LatestCountyStatistic.class).getResultList();
+        return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS, LatestCountyStatistic.class)
+                .getResultList();
     }
 
     @Override
-    public List<LatestCountyStatistic> findLatestStatisticsForCountyFilter(final String filter) {
+    public List<LatestCountyStatistic> findLatestStatisticsForFilter(final String filter) {
         return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS_FOR_FILTER, LatestCountyStatistic.class)
                 .setParameter("filterQuery", QueryUtils.formatParameterForContainsQuery(filter))
                 .getResultList();
     }
 
     @Override
+    public List<LatestCountyStatistic> findLatestStatisticsForCountyFilterWithoutFavorites(final String filter, final List<String> favorites) {
+        return em.createNamedQuery(Statistic.FIND_LATEST_STATISTICS_FOR_FILTER_WITHOUT_FAVORITES, LatestCountyStatistic.class)
+                .setParameter("filterQuery", QueryUtils.formatParameterForContainsQuery(filter))
+                .setParameter("favorites", favorites)
+                .getResultList();
+    }
+
+    @Override
     public List<LatestCountyStatistic> findLatestStatisticsForAgsList(final List<String> ags) {
-        return em.createNamedQuery(Statistic.FIND_STATISTICS_FOR_AGS, LatestCountyStatistic.class).setParameter("agsList", ags).getResultList();
+        return em.createNamedQuery(Statistic.FIND_STATISTICS_FOR_AGS, LatestCountyStatistic.class)
+                .setParameter("agsList", ags)
+                .getResultList();
     }
 }

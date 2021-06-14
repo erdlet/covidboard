@@ -44,18 +44,23 @@ public class DatabaseStatisticsProvider {
     }
 
     @Transactional
-    public List<LatestCountyStatistic> loadLatestCountyStatisticsForFilter(final String filter) {
+    public List<LatestCountyStatistic> searchForStatisticsExcludingFavorites(final String filter, final List<String> favorites) {
         Objects.requireNonNull(filter, "filter must not be null");
         LOGGER.debug("Searching latest statistics for filter: {}", filter);
 
-        final List<LatestCountyStatistic> latestStatisticsForFilter = statistics.findLatestStatisticsForCountyFilter(filter);
+        Objects.requireNonNull(favorites, "favorites must not be null");
+        LOGGER.debug("Excluding favorites from search: {}", favorites);
+
+        final List<LatestCountyStatistic> latestStatisticsForFilter = favorites.isEmpty()
+                ? statistics.findLatestStatisticsForFilter(filter)
+                : statistics.findLatestStatisticsForCountyFilterWithoutFavorites(filter, favorites);
         LOGGER.debug("Found latest statistics for filter '{}': {}", filter, latestStatisticsForFilter);
 
         return latestStatisticsForFilter;
     }
 
     @Transactional
-    public List<LatestCountyStatistic> loadLatestCountyStatisticsForAgsList(final List<String> ags) {
+    public List<LatestCountyStatistic> loadFavorites(final List<String> ags) {
         Objects.requireNonNull(ags, "filter must not be null");
         LOGGER.debug("Searching latest statistics for AGS list: {}", ags);
 

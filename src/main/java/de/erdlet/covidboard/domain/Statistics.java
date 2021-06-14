@@ -35,13 +35,27 @@ public interface Statistics {
     List<LatestCountyStatistic> findLatestStatisticsForCounties();
 
     /**
-     * Collects the latest {@link Statistic}s for {@link County}s matching the filter.
+     * Collects the latest {@link Statistic}s for {@link County}s matching the filter.<br>
+     * <br>
+     * <b>Note:</b> Shall be used when there are no favorites, as JPA has problems handling empty lists in
+     * <code>NOT IN</code> clauses.
      *
      * @param filter a filter provided by an user. The filter is expected to be a part of a {@link County}'s name or a (part
      * of) an AGS.
      * @return a {@link List} of the latest {@link Statistic}s where the {@link County} matches the filter
      */
-    List<LatestCountyStatistic> findLatestStatisticsForCountyFilter(final String filter);
+    List<LatestCountyStatistic> findLatestStatisticsForFilter(final String filter);
+
+    /**
+     * Collects the latest {@link Statistic}s for {@link County}s matching the filter and ignoring existing favorites.
+     *
+     * @param filter a filter provided by an user. The filter is expected to be a part of a {@link County}'s name or a (part
+     * of) an AGS.
+     * @param favorites a list of favorites which shall not be shown in the UI. Mustn't be empty in JPA implementations, as
+     * it has problems handling <code>NOT IN</code> with empty lists.
+     * @return a {@link List} of the latest {@link Statistic}s where the {@link County} matches the filter
+     */
+    List<LatestCountyStatistic> findLatestStatisticsForCountyFilterWithoutFavorites(final String filter, final List<String> favorites);
 
     /**
      * Collects the latest {@link Statistic}s for the {@link County}s identified by the provided AGS.
