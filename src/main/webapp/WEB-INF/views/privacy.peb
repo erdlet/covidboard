@@ -20,6 +20,7 @@
     <li><a class="index-link" href="#m27"> Sicherheitsmaßnahmen</a></li>
     <li><a class="index-link" href="#m104"> Blogs und Publikationsmedien</a></li>
     <li><a class="index-link" href="#m225"> Bereitstellung des Onlineangebotes und Webhosting</a></li>
+    <li><a class="index-link" href="#cookies">Verwendung von Cookies</a></li>
     <li><a class="index-link" href="#m12"> Löschung von Daten</a></li>
     <li><a class="index-link" href="#m15"> Änderung und Aktualisierung der Datenschutzerklärung</a></li>
     <li><a class="index-link" href="#m10"> Rechte der betroffenen Personen</a></li>
@@ -169,6 +170,39 @@
         </p>
     </li>
 </ul>
+
+<h2 id="cookies">Verwendung von Cookies</h2>
+covidboard.de benutzt ausschließlich technisch notwendige Cookies, um die Funktionalität der Seite sicherzustellen. Cookies sind kleine Textdateien,
+welche von der Webseite auf dem Gerät des Benutzers abgelegt werden, um darin Daten zu speichern.
+
+Diese Webanwendung benutzt folgende Cookies:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Bereitgestellung durch</th>
+      <th>Cookie Name</th>
+      <th>Beschreibung</th>
+      <th>Ablauf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>covidboard.de</td>
+      <td>JSESSIONID</td>
+      <td>Speichert die automatisch generierte Session ID des Servers. covidboard.de nutzt diese ID nicht.</td>
+      <td>Bei Beendigung der Session (= meist schließen des Tabs / des Browsers)</td>
+    </tr>
+    
+    <tr>
+      <td>covidboard.de</td>
+      <td>cb_favorites</td>
+      <td>Speichert die Favoriten des Benutzers.</td>
+      <td>Nach 3 Jahren</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="m12">Löschung von Daten</h2>
 <p>Die von uns verarbeiteten Daten werden nach Maßgabe der gesetzlichen Vorgaben gelöscht, sobald deren zur Verarbeitung erlaubten Einwilligungen widerrufen
     werden oder sonstige Erlaubnisse entfallen (z.B., wenn der Zweck der Verarbeitung dieser Daten entfallen ist oder sie für den Zweck nicht erforderlich
