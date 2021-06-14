@@ -18,6 +18,8 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.microprofile.metrics.annotation.Counted;
+
 import de.erdlet.covidboard.web.cookie.CookieFactory;
 import de.erdlet.covidboard.web.cookie.FavoritesCookie;
 
@@ -33,6 +35,7 @@ public class FavoritesController {
 
     @POST
     @UriRef("add-favorite")
+    @Counted(name = "favorites_added", absolute = true)
     public Response addCountyToFavorites(@FormParam("ags") final String ags, @QueryParam("filter") final String filter,
             @CookieParam(Cookies.CB_FAVORITES) final Cookie favoritesCookie) {
 
@@ -60,6 +63,7 @@ public class FavoritesController {
     @DELETE
     @Path("{ags}")
     @UriRef("remove-favorite")
+    @Counted(name = "favorites_removed", absolute = true)
     public Response deleteFavorite(@PathParam("ags") final String ags,
             @CookieParam(Cookies.CB_FAVORITES) final Cookie favoritesCookie) {
         if (isAgsNullOrEmpty(ags) || isFavoritesCookieNullOrEmpty(favoritesCookie)) {
