@@ -18,6 +18,7 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import de.erdlet.covidboard.web.cookie.CookieFactory;
 import de.erdlet.covidboard.web.cookie.FavoritesCookie;
 
 @Path("favorites")
@@ -26,6 +27,9 @@ public class FavoritesController {
 
     @Inject
     Router router;
+
+    @Inject
+    CookieFactory cookieFactory;
 
     @POST
     @UriRef("add-favorite")
@@ -37,7 +41,7 @@ public class FavoritesController {
         }
 
         if (favoritesCookie == null) {
-            final FavoritesCookie freshFavoritesCookie = FavoritesCookie.createForValue(ags);
+            final FavoritesCookie freshFavoritesCookie = cookieFactory.createForValue(ags);
             return Response.status(Status.SEE_OTHER).entity(router.redirectToSearch(filter)).cookie(freshFavoritesCookie).build();
         }
 
@@ -48,7 +52,7 @@ public class FavoritesController {
         }
 
         final String updatedFavorites = formatUpdatedValue(favoritesList);
-        final FavoritesCookie updatedCookie = FavoritesCookie.createForValue(updatedFavorites);
+        final FavoritesCookie updatedCookie = cookieFactory.createForValue(updatedFavorites);
 
         return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToSearch(filter)).build();
     }
@@ -69,7 +73,7 @@ public class FavoritesController {
         }
 
         final String updatedFavorites = formatUpdatedValue(favorites);
-        final FavoritesCookie updatedCookie = FavoritesCookie.createForValue(updatedFavorites);
+        final FavoritesCookie updatedCookie = cookieFactory.createForValue(updatedFavorites);
         return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToDashboard()).build();
     }
 
