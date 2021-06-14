@@ -8,7 +8,7 @@ Landkreis / Städtesuche{% if filter is not null %} - Filter: {{ filter }} {% en
 
 <h1>Landkreis / Städtesuche</h1>
 
-<section id="search" class="search-section my-3">
+<section id="search" class="bordered-section my-3">
     <form action="{{ router.linkToSearch() }}" method="get">
         <fieldset class="form-group">
             <div id="search-field-label">
@@ -32,10 +32,18 @@ Landkreis / Städtesuche{% if filter is not null %} - Filter: {{ filter }} {% en
 
 {% if filter is not null %}
 <section id="search-result">
-<h2>Suchergebnisse für Filter {{ filter }}</h2>
+<h2>Suchergebnisse für Filter "{{ filter }}"</h2>
 
 {% if page.content is empty %}
-<p class="alert alert-info">Es konnten keine Einträge für die Suche gefunden werden.</p>
+<div class="alert alert-info">
+<p class="lead">Es konnten keine Einträge für die Suche gefunden werden.</p>
+Möglicherweise sind das die Gründe:
+<ul>
+  <li>Du hast dich vertippt. Bitte prüfe deine Eingaben und probiere es nochmal.</li>
+  <li>Der gesuchte Ort ist schon ein Favorit. Bitte prüfe deine Startseite.</li>
+  <li>Der Ort kann von CovidBoard nicht verarbeitet werden, da er keinen Allgemeinen Gemeindeschlüssel hat. Dies trifft v.a. auf die Berliner Bezirke zu.</li>
+</ul>
+</div>
 {% else %}
 <div class="cs-card-container">
     {% for contentCard in page.content %}

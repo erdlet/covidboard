@@ -1,37 +1,69 @@
 {% extends "WEB-INF/views/base.peb" %}
 
-{% block pageTitle %}Allgemeine Informationen / Quellen{% endblock %}
+{% block pageTitle %}Hilfe / Quellenvermerk{% endblock %}
 
 {% block content %}
-<h1>Allgemeine Infos / Quellenvermerk</h1>
+<h1>Hilfe / Quellenvermerk</h1>
 
+<p class="lead">Auf dieser Seite findest du Antworten auf verschiedene Fragen, sowie den notwendigen Quellenvermerk.</p>
+
+<section class="bordered-section my-4">
+<h2>Hilfe</h2>
+
+<article class="my-4">
+    <h2 class="h3">Wie kann ich einen Favoriten hinzufügen?</h2>
+    Gehe auf die <a href="{{ router.linkToSearch() }}">Suche</a> und finde den Ort, den du favorisieren möchtest. Hast du ihn gefunden, klicke auf "Favorit hinzufügen".
+    Der Ort wird dir nun auf der Startseite angezeigt.
+</article>
+
+<article class="my-4">
+    <h2 class="h3">Wie kann ich einen Favoriten entfernen?</h2>
+    Gehe auf die <a href="{{ router.linkToDashboard() }}">Startseite</a> und finde den Ort, den du entfernen möchtest. Hast du ihn gefunden, klicke auf "Favorit entfernen".
+    Der Ort sollte dir nun nicht mehr auf der Startseite angezeigt werden.
+</article>
+
+<article class="my-4">
+    <h2 class="h3">Ich kann meinen Landkreis / meine Stadt nicht finden? Ist etwas kaputt?</h2>
+    Mittlerweile werden die Daten aller vorhandenen Landkreise / Städte mit einem allgemeinen Gemeinde Schlüsel (AGS) importiert. Leider
+    haben mindestens die Berliner Bezirke diesen Schlüssel nicht, sodass CovidBoard diese nicht anzeigen kann. Sorry :/ 
+</article>
+</section>
+
+<section class="bordered-section my-4">
+<h2>Weitere Fragen</h2>
 <article class="my-4">
     <h2 class="h3">Was ist das hier?</h2>
     Dies ist ein kleines Privatprojekt um eine schnelle Übersicht zur den aktuellen Corona Inzidenzen zu bekommen.
 </article>
 
 <article class="my-4">
-    <h2 class="h3">Woher kommen die Daten?</h2>
-    <p>
-        Dieses Board zeigt die aktuellen Zahlen des RKI auf Basis des <a
-            href="https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=BL,BL_ID,county,last_update,cases7_per_100k,AGS&returnGeometry=false&outSR=4326&f=json">COVID-19
-            Datenhubs des Bundesamtes fuer Kartographie und Geodäsi</a>. Die Daten werden täglich importiert und zeigen den Datenstand des aktuellen Tages um 00:00
-        Uhr.
-    </p>
-    <p>
-        <b>Quellenvermerk:</b> Robert Koch-Institut (RKI), dl-de/by-2-0 Haftungsausschluss: „Die Inhalte, die über die Internetseiten des Robert Koch-Instituts
-        zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der Fachöffentlichkeit“
-    </p>
-</article>
-
-<article class="my-4">
-    <h2 class="h3">Warum sind hier nicht alle Städte / Landkreise?</h2>
-    Mittlerweile werden die Daten aller vorhandenen Landkreise / Städte mit einem allgemeinen Gemeinde Schlüsel (AGS) importiert. Leider
-    haben offenbar die Berliner Bezirke diesen Schlüssel nicht, sodass CovidBoard diese nicht anzeigen kann. Sorry :/ 
-</article>
-
-<article class="my-4">
     <h2 class="h3">Kann man noch mehr Daten (Genesene, ...) anzeigen?</h2>
     Wie oben gilt: kann ich gerne einbauen, wird aber dauern. Ist schließlich ein Privatprojekt ;)
 </article>
+
+<article class="my-4">
+    <h2 class="h3">Ich habe eine Idee für ein weiteres Feature, wo kann ich mich melden?</h2>
+    Bei Wünschen für neue Features kann mir gerne unter der E-Mail Adresse <a href="mailto:erdletob@gmail.com">erdletob at gmail dot com</a> geschrieben werden.
+    Wenn ich den Code mal aufgeräumt habe, wird der Code des Projekts auch noch veröffentlicht ;) 
+</article>
+
+</section>
+
+<section class="bordered-section my-4">
+    <h2>Quellenvermerk</h2>
+    <article class="my-4">
+        <h2 class="h3">Woher kommen die Daten?</h2>
+        <p>
+            Dieses Board zeigt die aktuellen Zahlen des RKI auf Basis des <a
+                href="https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1%3D1&outFields=BL,BL_ID,county,last_update,cases7_per_100k,AGS&returnGeometry=false&outSR=4326&f=json">COVID-19
+                Datenhubs des Bundesamtes fuer Kartographie und Geodäsi</a>. Die Daten werden täglich importiert und zeigen den Datenstand des aktuellen Tages um
+            00:00 Uhr.
+        </p>
+        <p>
+            <b>Quellenvermerk:</b> Robert Koch-Institut (RKI), dl-de/by-2-0 Haftungsausschluss: „Die Inhalte, die über die Internetseiten des Robert
+            Koch-Instituts zur Verfügung gestellt werden, dienen ausschließlich der allgemeinen Information der Öffentlichkeit, vorrangig der
+            Fachöffentlichkeit“
+        </p>
+    </article>
+</section>
 {% endblock %}

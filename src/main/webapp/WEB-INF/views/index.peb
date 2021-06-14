@@ -4,18 +4,20 @@
 
 {% block content %}
 
-<h1>Aktuelle 7-Tage Inzidenzen favorisierter Landkreise und Städte</h1>
+
 
 {% if page.favorites is empty %}
-<p>
-Hallo! Anscheinend hast du noch keine Favoriten ausgewählt. <br>
+<h1>Willkommen bei covidboard.de!</h1>
+<p class="lead">
+Anscheinend hast du noch keine Favoriten ausgewählt. <br>
 <br>
-<b>covidboard.de</b> bietet dir die Möglichkeit, für dich interessante Orte gezielt zu speichern, um sie hier auf einen Blick ansehen zu können. Dabei werden
-keinerlei persönliche Daten erfasst, du brauchst dich also nicht anzumelden. Um nach Landkreisen und Städten zu suchen und sie als Favorit zu speichern,
-benutzte bitte die <a href="{{ router.linkToSearch() }}">Suchfunktion</a>. Dort kannst du auf den Ergebniskachen den Button <b>"Favorit hinzufügen"</b> nutzen,
-um deine Startseite befüllen.
+<a href="/">covidboard.de</a> bietet dir die Möglichkeit, hier Orte zu hinterlegen, deren 7-Tages Inzidenz für dich interessant sind. 
+Mit Hilfe der <a href="{{ router.linkToSearch() }}">Suchfunktion</a> kannst du Landkreise und Städte suchen.
+Hast du einen Ort gefunden, nutze den Button <b>"Favorit hinzufügen"</b>, um den Ort auf dieser Seite anzuzeigen.
 </p>
 {% else %}
+<h1>Aktuelle 7-Tage Inzidenzen deiner Favoriten</h1>
+
 <div class="cs-card-container">
     {% for contentCard in page.favorites %}
        {% include "WEB-INF/views/fragments/_favorite-card.peb" %}
