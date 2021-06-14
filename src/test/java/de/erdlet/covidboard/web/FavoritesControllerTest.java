@@ -32,7 +32,7 @@ public class FavoritesControllerTest {
 
     @Test
     public void extractFavoritesAsList_shouldReturnMultiItemListWhenMultipleItemsExist() {
-        final List<String> items = sut.extractFavoritesAsList("09167,09187");
+        final List<String> items = sut.extractFavoritesAsList("09167&09187");
 
         assertThat(items).containsOnly("09167", "09187");
     }
@@ -55,6 +55,6 @@ public class FavoritesControllerTest {
     public void formatUpdatedValue_shouldReturnMultiItemStringWhenMultipleValuesAreStored() {
         final List<String> multiItemList = List.of("09167", "09187");
 
-        assertThat(sut.formatUpdatedValue(multiItemList)).isEqualTo("09167,09187");
+        assertThat(sut.formatUpdatedValue(multiItemList)).isEqualTo("09167&09187");
     }
 }
