@@ -1,0 +1,16 @@
+
+<div class="card my-3 mx-1 cs-card">
+    <div class="card-body">
+        <h2 class="card-title h3">{{ contentCard.countyName }}</h2>
+        <p class="h2">{{ contentCard.sevenDayIncidence }}</p>
+        <p class="text-muted">Letztes Update: {{ contentCard.lastUpdate }}</p>
+        <div class="cs-card-footer">
+            <a href="{{ router.linkToCountyDetails(contentCard.ags) }}">Zur Detailsansicht</a>
+            <form class="cs-card-inline-form" action="{{ router.linkForRemovingFavorite(contentCard.ags) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                <input type="hidden" name="{{ mvc.csrf.name }}" value="{{ mvc.csrf.token }}" />
+                <button type="submit" class="btn btn-sm btn-danger">Favorit entfernen</button>
+            </form>
+        </div>
+    </div>
+</div>

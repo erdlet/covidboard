@@ -1,63 +1,26 @@
 {% extends "WEB-INF/views/base.peb" %} 
 
-{% block pageTitle %}Übersicht{% endblock %} 
+{% block pageTitle %}Startseite / Favoriten{% endblock %} 
 
 {% block content %}
 
-<h1>Aktuelle 7-Tage Inzidenzen</h1>
+<h1>Aktuelle 7-Tage Inzidenzen favorisierter Landkreise und Städte</h1>
 
-<section id="search" class="search-section my-3">
-    <h2>Suche</h2>
-    <form action="{{ router.linkToDashboard() }}" method="get">
-        <fieldset class="form-group">
-            <div id="search-field-label">
-                <label for="search-field">Landkreis-/ Städtesuche</label>
-            </div>
-            <div id="search-field-helptext" class="form-text">
-              Zur Landkreis-/Städtesuche können folgende Suchmuster verwendet werden:
-              <ul>
-                <li>Bestandteile des Namens, bspw. "Neuburg"</li>
-                <li>Der ganze bzw. Teile des Gemeindeschlüssel, bspw. 09176</li>
-              </ul>
-            </div>
-            <input id="search-field" class="form-control" type="search" name="filter" value="{{ filter }}"/>
-        </fieldset>
-
-        <button type="submit" class="btn btn-primary">Suche ausführen</button>
-    </form>
-</section>
-
-{% if filter is not null %}
-<section id="search-result">
-<h2>Suchergebnisse für Filter {{ filter }}</h2>
-
-{% if page.content is empty %}
-Es konnten keine Einträge für die Suche gefunden werden.
+{% if page.favorites is empty %}
+<p>
+Hallo! Anscheinend hast du noch keine Favoriten ausgewählt. <br>
+<br>
+<b>covidboard.de</b> bietet dir die Möglichkeit, für dich interessante Orte gezielt zu speichern, um sie hier auf einen Blick ansehen zu können. Dabei werden
+keinerlei persönliche Daten erfasst, du brauchst dich also nicht anzumelden. Um nach Landkreisen und Städten zu suchen und sie als Favorit zu speichern,
+benutzte bitte die <a href="{{ router.linkToSearch() }}">Suchfunktion</a>. Dort kannst du auf den Ergebniskachen den Button <b>"Favorit hinzufügen"</b> nutzen,
+um deine Startseite befüllen.
+</p>
 {% else %}
-<!-- TODO: Karte als Komponente extrahieren -->
 <div class="cs-card-container">
-    {% for contentCard in page.content %}
-        <div class="card my-3 mx-1 cs-card">
-            <div class="card-body">
-                <h2 class="card-title h3">{{ contentCard.countyName }}</h2>
-                <p class="h2">{{ contentCard.sevenDayIncidence }}</p>
-                <p class="text-muted">Letztes Update: {{ contentCard.lastUpdate }}</p>
-                <div class="cs-card-footer">
-                    <a href="{{ router.linkToCountyDetails(contentCard.ags) }}">Zur Detailsansicht</a>
-                   <!-- TODO: Attribut in ContentCard einbauen, um zu zeigen ob es ein Favorit ist oder nicht -->
-                   <!-- TODO: Wenn Karte KEIN Favorit ist, dann Form für anlegen -->
-                   <!-- TODO: Wenn KARTE EIN Favorit ist, dann Form für entfernen-->
-                    <form action="{{ router.linkForAddingFavorite }}" method="post">
-                      <input type="hidden" name="{{ mvc.csrf.name }}" value="{{ mvc.csrf.token }}"/>
-                      <input type="hidden" name="ags" value="{{ contentCard.ags }}">
-                    </form>
-                </div>
-            </div>
-        </div>
+    {% for contentCard in page.favorites %}
+       {% include "WEB-INF/views/fragments/_favorite-card.peb" %}
     {% endfor %}
 </div>
-{% endif %}
-</section>
 {% endif %}
 
 {% endblock %}

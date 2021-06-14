@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 import de.erdlet.covidboard.domain.LatestCountyStatistic;
 
-public final class DashboardPage {
+public final class SearchPage {
 
-    public final List<CardContent> favorites;
+    public final List<CardContent> content;
 
-    public DashboardPage(final List<LatestCountyStatistic> favorites) {
-        this.favorites = favorites.stream().map(CardContent::new).collect(Collectors.toUnmodifiableList());
+    public SearchPage(final List<LatestCountyStatistic> latestStatistics) {
+        this.content = latestStatistics.stream().map(CardContent::new).collect(Collectors.toUnmodifiableList());
     }
 
     public static class CardContent {

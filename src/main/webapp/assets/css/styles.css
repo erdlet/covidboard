@@ -26,4 +26,5 @@ label {
 
 .cs-card-inline-form {
 	margin: 0;
+	display: inline;
 }

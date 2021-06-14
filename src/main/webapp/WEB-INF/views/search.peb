@@ -1,0 +1,49 @@
+{% extends "WEB-INF/views/base.peb" %} 
+
+{% block pageTitle %}
+Landkreis / Städtesuche{% if filter is not null %} - Filter: {{ filter }} {% endif %}
+{% endblock %} 
+
+{% block content %}
+
+<h1>Landkreis / Städtesuche</h1>
+
+<section id="search" class="search-section my-3">
+    <form action="{{ router.linkToSearch() }}" method="get">
+        <fieldset class="form-group">
+            <div id="search-field-label">
+                <label for="search-field">Suchfilter</label>
+            </div>
+            <div id="search-field-helptext" class="form-text">
+              Zur Landkreis-/Städtesuche können folgende Suchmuster verwendet werden:
+              <ul>
+                <li>Bestandteile des Namens, bspw. "Neuburg"</li>
+                <li>Der ganze bzw. Teile des Gemeindeschlüssel, bspw. 09176</li>
+              </ul>
+              Es werden nur Ergebnisse angezeigt, die nicht in den Favoriten des aktuell genutzten Gerätes gespeichert sind.
+              Die Favoriten befinden sich auf der <a href="{{ router.linkToDashboard() }}">Startseite</a>.
+            </div>
+            <input id="search-field" class="form-control" type="search" name="filter" value="{{ filter }}"/>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Suche ausführen</button>
+    </form>
+</section>
+
+{% if filter is not null %}
+<section id="search-result">
+<h2>Suchergebnisse für Filter {{ filter }}</h2>
+
+{% if page.content is empty %}
+<p class="alert alert-info">Es konnten keine Einträge für die Suche gefunden werden.</p>
+{% else %}
+<div class="cs-card-container">
+    {% for contentCard in page.content %}
+       {% include "WEB-INF/views/fragments/_non-favorite-card.peb" %}
+    {% endfor %}
+</div>
+{% endif %}
+</section>
+{% endif %}
+
+{% endblock %}

@@ -20,8 +20,16 @@ public class Router {
         return mvcContext.uri("dashboard").toASCIIString();
     }
 
-    public String redirectToDashboard(final String filter) {
-        final String uri = "redirect:" + linkToDashboard();
+    public String redirectToDashboard() {
+        return "redirect:/";
+    }
+
+    public String linkToSearch() {
+        return mvcContext.uri("search").toASCIIString();
+    }
+
+    public String redirectToSearch(final String filter) {
+        final String uri = "redirect:/search";
 
         return filter == null || filter.isBlank() ? uri : uri + "?filter=" + filter;
     }
