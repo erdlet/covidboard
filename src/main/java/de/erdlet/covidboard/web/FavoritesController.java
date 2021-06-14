@@ -7,15 +7,14 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.mvc.Controller;
 import javax.mvc.UriRef;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -32,46 +31,46 @@ public class FavoritesController {
     @UriRef("add-favorite")
     public Response addCountyToFavorites(@FormParam("ags") final String ags, @QueryParam("filter") final String filter,
             @CookieParam(Cookies.CB_FAVORITES) final Cookie favoritesCookie) {
+
         if (ags == null || ags.isEmpty()) {
-            return Response.status(Status.SEE_OTHER).entity(router.redirectToDashboard(filter)).build();
+            return Response.status(Status.SEE_OTHER).entity(router.redirectToSearch(filter)).build();
         }
 
         if (favoritesCookie == null) {
-            final NewCookie freshFavoritesCookie = new FavoritesCookie(ags);
-            return Response.status(Status.SEE_OTHER).entity(router.redirectToDashboard(filter)).cookie(freshFavoritesCookie).build();
+            final FavoritesCookie freshFavoritesCookie = FavoritesCookie.createForValue(ags);
+            return Response.status(Status.SEE_OTHER).entity(router.redirectToSearch(filter)).cookie(freshFavoritesCookie).build();
         }
 
-        final List<String> favoritesList = extractFavoritesAsList(favoritesCookie);
+        final List<String> favoritesList = extractFavoritesAsList(favoritesCookie.getValue());
 
         if (!favoritesList.contains(ags)) {
             favoritesList.add(ags);
         }
 
         final String updatedFavorites = formatUpdatedValue(favoritesList);
-        final FavoritesCookie updatedCookie = new FavoritesCookie(updatedFavorites);
+        final FavoritesCookie updatedCookie = FavoritesCookie.createForValue(updatedFavorites);
 
-        return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToDashboard(filter)).build();
+        return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToSearch(filter)).build();
     }
 
     @DELETE
     @Path("{ags}")
     @UriRef("remove-favorite")
-    public Response deleteFavorite(@PathParam("ags") final String ags, @QueryParam("filter") final String filter,
+    public Response deleteFavorite(@PathParam("ags") final String ags,
             @CookieParam(Cookies.CB_FAVORITES) final Cookie favoritesCookie) {
         if (isAgsNullOrEmpty(ags) || isFavoritesCookieNullOrEmpty(favoritesCookie)) {
-            return Response.status(Status.SEE_OTHER).entity(router.redirectToDashboard(filter)).build();
+            return Response.status(Status.SEE_OTHER).entity(router.redirectToDashboard()).build();
         }
 
-        final List<String> favorites = extractFavoritesAsList(favoritesCookie);
+        final List<String> favorites = extractFavoritesAsList(favoritesCookie.getValue());
 
         if (favorites.contains(ags)) {
             favorites.remove(ags);
         }
 
         final String updatedFavorites = formatUpdatedValue(favorites);
-        final FavoritesCookie updatedCookie = new FavoritesCookie(updatedFavorites);
-
-        return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToDashboard(filter)).build();
+        final FavoritesCookie updatedCookie = FavoritesCookie.createForValue(updatedFavorites);
+        return Response.status(Status.SEE_OTHER).cookie(updatedCookie).entity(router.redirectToDashboard()).build();
     }
 
     private boolean isAgsNullOrEmpty(final String ags) {
@@ -82,11 +81,11 @@ public class FavoritesController {
         return cookie == null || cookie.getValue() == null || cookie.getValue().isBlank();
     }
 
-    private List<String> extractFavoritesAsList(final Cookie cookie) {
-        return Stream.of(cookie.getValue().split(",")).collect(Collectors.toList());
+    List<String> extractFavoritesAsList(final String value) {
+        return Stream.of(value.split("&")).collect(Collectors.toList());
     }
 
-    private String formatUpdatedValue(final List<String> favorites) {
-        return favorites.stream().collect(Collectors.joining(","));
+    String formatUpdatedValue(final List<String> favorites) {
+        return favorites.stream().collect(Collectors.joining("&"));
     }
 }
