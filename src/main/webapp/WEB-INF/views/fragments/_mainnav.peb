@@ -1,9 +1,12 @@
 <header>
     <nav class="nav navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <div class="h2 text-white">
-                <a href="{{ router.linkToDashboard() }}">CovidBoard</a>
-            </div>
+        <div class="container cs-main-menu">
+            <a class="navbar-brand cs-brand" href="{{ router.linkToDashboard() }}">CovidBoard</a>
+
+            <ul class="cs-menu-items">
+                <li class="cs-menu-item nav-item"><a class="cs-nav-link" href="{{ router.linkToDashboard() }}">Startseite</a></li>
+                <li class="cs-menu-item nav-item"><a class="cs-nav-link" href="{{ router.linkToSearch() }}">Suche</a></li>
+            </ul>
         </div>
     </nav>
 </header>

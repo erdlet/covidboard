@@ -1,5 +1,5 @@
 label {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .cs-card-container {
@@ -27,4 +27,39 @@ label {
 .cs-card-inline-form {
 	margin: 0;
 	display: inline;
+}
+
+.cs-brand {
+  font-size: 2.5rem;
+}
+
+.cs-menu-items {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 0;
+}
+
+.cs-menu-item {
+	list-style: none;
+	padding: 0;
+	margin: .5rem 0;
+}
+
+.cs-nav-link {
+	font-size: 1.25rem;
+}
+
+@media (min-width: 768px) { 
+
+  .cs-menu-items  {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .cs-nav-link {
+    padding-right: 2rem;
+  }
 }
