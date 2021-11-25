@@ -1,0 +1,111 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight: 400;
+}
+
+h1, .h1 {
+	font-size: 2.25rem;
+}
+
+h2, .h2 {
+	font-size: 1.75rem;
+}
+
+h3, .h3 {
+	font-size: 1.35rem;
+}
+
+h4, .h4 {
+	font-size: 1.25rem;
+}
+
+h5, .h5 {
+  font-size: 1.15rem;
+}
+
+h6, .h6 {
+  font-size: 1rem;
+}
+
+label {
+	font-weight: bold;
+}
+
+.cs-card-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem 1rem;
+}
+
+.cs-card {
+	width: 500px;
+	flex: 1 1 auto;
+}
+
+.bordered-section {
+	border: 1px solid #00000020;
+	padding: 1rem;
+}
+
+.cs-card-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cs-card-inline-form {
+	margin: 0;
+	display: inline;
+}
+
+.cs-brand {
+  font-size: 2.5rem;
+}
+
+.cs-menu-items {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 0;
+}
+
+.cs-menu-item {
+	list-style: none;
+	padding: 0;
+	margin: .5rem 0;
+}
+
+.cs-nav-link {
+	font-size: 1.25rem;
+}
+
+.cs-footer {
+	border-top: 1px solid #00000020;
+}
+
+.cs-footer-links {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cs-footer-item {
+	margin: .75rem 0;
+}
+
+@media (min-width: 768px) { 
+
+  .cs-menu-items  {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .cs-nav-link {
+    padding-right: 2rem;
+  }
+}

@@ -1,0 +1,9 @@
+<footer class="cs-footer container">
+    <ul class="cs-footer-links">
+        <li class="cs-footer-item"><a href="{{ router.linkToDashboard() }}">Startseite</a>
+        <li class="cs-footer-item"><a href="{{ router.linkToSearch() }}">Suche</a>
+        <li class="cs-footer-item"><a href="{{ router.linkToCommonInformation() }}">Hilfe / Quellenvermerk</a></li>
+        <li class="cs-footer-item"><a href="{{ router.linkToImpress() }}">Impressum</a></li>
+        <li class="cs-footer-item"><a href="{{ router.linkToPrivacy() }}">Datenschutz</a></li>
+    </ul>
+</footer>

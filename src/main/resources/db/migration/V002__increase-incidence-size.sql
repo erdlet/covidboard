@@ -1,0 +1,1 @@
+ALTER TABLE statistics MODIFY COLUMN seven_day_incidence DECIMAL(7,2) NOT NULL;
