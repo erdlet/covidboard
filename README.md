@@ -1,6 +1,6 @@
 # COVIDBOARD - 7-Tages-Inzidenzen schnell im Blick
 
-Mit CovidBoard lassen sich die 7-Tages-Inzidenzen für Deutschland laden und auf einer personalisierbaren Startseite anzeigen.
+Mit [CovidBoard](https://www.covidboard.de) lassen sich die 7-Tages-Inzidenzen für Deutschland laden und auf einer personalisierbaren Startseite anzeigen.
 
 ## Technologien
 
