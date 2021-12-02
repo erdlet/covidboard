@@ -15,6 +15,10 @@ Mit [CovidBoard](https://www.covidboard.de) lassen sich die 7-Tages-Inzidenzen f
 
 Die folgenden Punkte beschreiben die Vorkehrungen zum Betrieb von CovidBoard.
 
+### IMPRESSUM UND DATENSCHUTZERKLÄRUNG ÄNDERN
+
+Es ist Absicht, dass ich das mit Nachdruck schreibe. Da ich die Anwendung aktiv betreibe und leider Impressum und Datenschutzerklärung angeben muss / sollte, ist diese auch im Repository. Sollte also jemand seine eigene Instanz öffentlich nutzen wollen, bitte die Angaben ändern. Danke!
+
 ### Grundlegendes zum Application Server
 Für die Ausführung von CovidBoard wird ein Application Server mit RESTEasy als JAX-RS Implementierung benötigt. Sollte ein
 auf Jersey basierender Server verwendet werden, so muss die Maven Dependency `org.eclipse.krazo:krazo-resteasy:...` gegen `org.eclipse.krazo:krazo-jersey:...` ausgetauscht
